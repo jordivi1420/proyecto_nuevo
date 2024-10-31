@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Lista de Estudiantes</h2>
+    <!-- Botón para abrir el modal de creación -->
+    <button class="btn btn-primary mb-3" (click)="abrirModalCrearEstudiante()">Crear Estudiante</button>
+  <table class="table table-striped" *ngIf="estudiantes && estudiantes.length > 0; else noEstudiantes">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Carrera</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of estudiantes">
+        <td>{{ estudiante.id }}</td>
+        <td>{{ estudiante.carrera }}</td>
+        <td>{{ estudiante.persona.nombres }}</td>
+        <td>{{ estudiante.persona.apellidos }}</td>
+        <td>{{ estudiante.persona.email }}</td>
+        <td>
+          <button class="btn btn-warning me-2" (click)="abrirModalActualizarEstudiante(estudiante)">Actualizar</button>
+          <button class="btn btn-danger" (click)="confirmDelete(estudiante.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noEstudiantes>
+    <p>No hay estudiantes disponibles.</p>
+  </ng-template>
+</div>
